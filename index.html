@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#111126">
+  <meta name="description" content="Fusioná, hace combos y superá tu récord, un juego gratis para instalar.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Merge Mania">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-512.png">
+  <link rel="apple-touch-icon" href="./icons/icon-512.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <title>Merge Mania · ¡Fusioná y ganá!</title>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="masthead">
+      <div class="brandmark">
+        <img
+        src="./icons/icon-512.png"
+        alt="Merge Mania">
+      </div>
+      <span class="eyebrow">MINI ARCADE</span><h1>MERGE <span>MANIA</span><span class="title-spark">✦</span></h1></div>
+      <div class="header-actions">
+        <button type="button" id="fullscreenButton" class="icon-button" aria-label="Activar pantalla completa" title="Pantalla completa" aria-pressed="false">
+          <svg id="enterFullscreenIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H4a1 1 0 0 0-1 1v4M16 3h4a1 1 0 0 1 1 1v4M3 16v4a1 1 0 0 0 1 1h4M21 16v4a1 1 0 0 1-1 1h-4"/></svg>
+          <svg id="exitFullscreenIcon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h5a1 1 0 0 0 1-1V3M21 9h-5a1 1 0 0 1-1-1V3M3 15h5a1 1 0 0 1 1 1v5M21 15h-5a1 1 0 0 0-1 1v5"/></svg>
+        </button>
+        <button type="button" id="soundButton" class="icon-button" aria-label="Activar o desactivar sonido" title="Sonido">
+          <svg id="soundOnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          <svg id="soundOffIcon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
+        </button>
+        <button type="button" id="pauseButton" class="icon-button" aria-label="Pausar partida" title="Pausar">
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="5" height="16" rx="1.5"/><rect x="14" y="4" width="5" height="16" rx="1.5"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="scoreboard" aria-label="Puntajes">
+      <div class="score-panel score-current"><div class="score-caption"><span class="score-symbol">✦</span> PUNTOS</div><div class="score-value" id="scoreValue" aria-live="polite">0</div></div>
+      <div class="score-panel score-best"><div class="score-caption"><span class="trophy-icon">◆</span> RÉCORD</div><div class="score-value" id="bestValue">0</div></div>
+      <div class="score-panel score-combo"><div class="score-caption"><span class="fire-icon">ϟ</span> RACHA</div><div class="score-value" id="comboValue">—</div></div>
+    </section>
+
+    <section class="game-header" aria-label="Información de la partida">
+      <div class="level-status"><span class="live-indicator"></span><div><strong id="statusLabel">¡A fusionar!</strong><small id="statusHint">Uní dos pelotas iguales</small></div></div>
+      <div class="next-ball"><div class="next-copy"><span>PRÓXIMA</span><strong id="nextValue">4</strong></div><div class="next-ball-icon" id="nextIcon">4</div></div>
+    </section>
+
+
+    <section class="mission-panel" aria-label="Objetivo de la partida">
+      <div class="mission-top">
+        <span class="mission-tag" id="goalNumber">OBJETIVO 1</span>
+        <strong id="goalText">Creá una esfera de 128</strong>
+        <span class="mission-reward" id="goalReward">+100</span>
+      </div>
+      <div class="mission-progress" role="progressbar" id="goalProgress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Avance del objetivo"><div id="goalFill"></div></div>
+      <div class="mission-meta"><small id="goalHint">Fusioná para llegar al 128</small><small id="goalCount">0 / 1</small></div>
+    </section>
+
+    <section class="power-panel" aria-label="Poderes y monedas">
+      <div class="power-panel-heading"><div class="wallet"><svg class="coin-svg" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="#e59b39" stroke="#ffe8a2" stroke-width="3"/><circle cx="16" cy="16" r="9" fill="#ffc958" stroke="#ba743b" stroke-width="1.5"/><path d="M16 8v16m-4-12h7a3 3 0 0 1 0 6h-7" fill="none" stroke="#a46229" stroke-width="2.5"/></svg><strong id="coinValue">0</strong><span>MONEDAS</span></div><span class="power-instructions" id="powerMessage">Elegí un poder · + para comprar</span></div>
+      <div class="power-grid">
+        <div class="power-item" data-power="hammer"><button type="button" class="power-use" data-use="hammer" title="Martillo: eliminá una esfera" aria-label="Usar martillo"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="m14 8 5-5 20 15-6 8-9-7-12 17-7-5 14-17Z" fill="#ffd276" stroke="#78436d" stroke-width="3"/><path d="m16 7 10 7-5 6-10-7Z" fill="#ffe8ab"/><path d="m9 36 7-8 5 4-6 9Z" fill="#caa2ee"/></svg><span class="power-name">Martillo</span><span class="power-qty" id="hammerQty">0</span></button><button class="power-buy" data-buy="hammer" type="button" aria-label="Comprar martillo por 120 monedas">+ <span>120</span></button></div>
+        <div class="power-item" data-power="swap"><button type="button" class="power-use" data-use="swap" title="Cambio: reemplazá la esfera por lanzar" aria-label="Usar cambiar esfera"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M9 19a16 16 0 0 1 28-8" fill="none" stroke="#6fe1f9" stroke-width="5" stroke-linecap="round"/><path d="m36 5 3 10-11-1" fill="none" stroke="#6fe1f9" stroke-width="5" stroke-linejoin="round"/><path d="M39 28a16 16 0 0 1-28 8" fill="none" stroke="#b59afb" stroke-width="5" stroke-linecap="round"/><path d="m12 42-3-10 11 1" fill="none" stroke="#b59afb" stroke-width="5" stroke-linejoin="round"/></svg><span class="power-name">Cambio</span><span class="power-qty" id="swapQty">0</span></button><button class="power-buy" data-buy="swap" type="button" aria-label="Comprar cambio por 170 monedas">+ <span>170</span></button></div>
+        <div class="power-item" data-power="magnet"><button type="button" class="power-use" data-use="magnet" title="Imán: fusioná dos esferas iguales" aria-label="Usar imán"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M11 8v18a13 13 0 0 0 26 0V8h-9v18a4 4 0 0 1-8 0V8Z" fill="#a891f5" stroke="#d9c5ff" stroke-width="2"/><path d="M11 8h9v9h-9zm17 0h9v9h-9z" fill="#ff809e"/></svg><span class="power-name">Imán</span><span class="power-qty" id="magnetQty">0</span></button><button class="power-buy" data-buy="magnet" type="button" aria-label="Comprar imán por 260 monedas">+ <span>260</span></button></div>
+        <div class="power-item" data-power="bomb"><button type="button" class="power-use" data-use="bomb" title="Bomba: eliminá hasta 5 esferas cercanas" aria-label="Usar bomba"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="23" cy="29" r="15" fill="#ee659d" stroke="#ffc0ca" stroke-width="3"/><path d="m25 15 3-7h8" stroke="#ffd28d" stroke-width="4" fill="none" stroke-linecap="round"/><path d="m39 2-2 6 6 1-7 2" stroke="#ffe68b" stroke-width="2.5" fill="none"/><circle cx="18" cy="23" r="5" fill="#fff5d1" opacity=".55"/></svg><span class="power-name">Bomba</span><span class="power-qty" id="bombQty">0</span></button><button class="power-buy" data-buy="bomb" type="button" aria-label="Comprar bomba por 390 monedas">+ <span>390</span></button></div>
+      </div>
+    </section>
+
+    <section class="game-area" id="gameArea" aria-label="Zona de juego">
+      <div class="board-frame">
+        <canvas id="gameCanvas" width="400" height="548" tabindex="0" role="application" aria-label="Juego Merge Mania: mové el dedo o mouse para apuntar y soltá una pelota. Juntá dos del mismo número para fusionarlas."></canvas>
+        <div id="gameToast" class="game-toast" role="status" aria-live="polite"></div>
+        <div id="startingTip" class="starting-tip">TOCÁ PARA SOLTAR <span>↓</span></div>
+        <div id="gameModal" class="game-modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <div class="modal-content"><div class="modal-icon" id="modalIcon">⏸</div><div class="modal-kicker" id="modalKicker">PARTIDA EN PAUSA</div><h2 id="modalTitle">Tomá un descanso</h2><p id="modalDescription">Tu progreso está acá.</p><div id="finalScoreBox" class="final-score hidden"><span>TU PUNTAJE</span><strong id="finalScore">0</strong></div><button type="button" class="primary-button" id="modalPrimary">CONTINUAR <span>→</span></button><button type="button" class="secondary-button" id="modalSecondary">Nueva partida</button></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">Nuevos objetivos <span>✦</span> Poderes y monedas <span>✦</span> Un nuevo récord</footer>
+  </main>
+  <!-- Vercel Web Analytics para esta PWA estática. Habilitar Analytics en el proyecto Vercel. -->
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script src="./game.js" defer></script>
+</body>
+</html>

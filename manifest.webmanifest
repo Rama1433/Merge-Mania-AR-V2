@@ -1,0 +1,35 @@
+{
+  "name": "Merge Mania - Juego de fusiones",
+  "short_name": "Merge Mania",
+  "description": "Fusioná pelotas, conseguí combos y rompé tu récord.",
+  "lang": "es-AR",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait-primary",
+  "background_color": "#101020",
+  "theme_color": "#111126",
+  "categories": [
+    "games",
+    "entertainment"
+  ],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "display_override": [
+    "fullscreen",
+    "standalone"
+  ]
+}
