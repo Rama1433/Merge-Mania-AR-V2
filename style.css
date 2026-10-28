@@ -187,17 +187,27 @@ html,body{height:100%;overflow:hidden;overscroll-behavior:none}
   .app-shell{height:auto;min-height:100dvh}
   .game-area{height:clamp(300px,60vh,440px);flex:none}
 }
-/* Logo Real de Merge Mania*/
+
+
+/* V3.0.2 · Ícono original y título compacto — no modifica el tablero ni el juego. */
+.masthead{display:flex;align-items:center}
 .brandmark{
+  flex-shrink:0;
   overflow:hidden;
   transform:none;
-  padding: 0;
+  padding:0;
 }
-.brandmark img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-
+.brandmark img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:inherit;
+}
+.brandtext{flex:1 1 auto;min-width:0}
+.brandtext h1{font-size:clamp(16px,5vw,27px);line-height:1.05;white-space:nowrap;letter-spacing:-1px;margin:0}
+.header-actions{flex-shrink:0}
+@media(max-width:355px){
+  .brandtext h1{font-size:clamp(14px,4.9vw,17px);letter-spacing:-.8px}
+  .title-spark{font-size:12px;margin-left:2px}
 }
